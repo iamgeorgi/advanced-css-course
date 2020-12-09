@@ -7,54 +7,201 @@ Dark green: #28b485
 
 */
 
-*{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box; 
-  /* borders and paddings are no longer added to the total width or the total height */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* borders and paddings are no longer added to the total width or the total height */
 }
 
 body {
-  font-family: "Lato", sans-serif;
-  /* all the child elements of body inherits it's properties */
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 1.7;
-  color: #777;
-  padding: 30px;
-  /* gives a cool white border around the page */
+    font-family: "Lato", sans-serif;
+    /* all the child elements of body inherits it's properties */
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.7;
+    color: #777;
+    padding: 30px;
+    /* gives a cool white border around the page */
 }
 
 .header {
-  height: 95vh;
-  /* the element will take 95% of device screen height */
-  background-image: linear-gradient(
-    to right bottom, 
-    #7ed56fd2, 
-    #28b485bb), 
-    url('../img/hero.jpg');
-  background-size: cover;
-  background-position: top;
-  /* whanever of the screen size is, the top part of the image will always stick to the top part of the container */
-  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
-  /* top-left, top-right, bottom-right, bottom-left */
+    height: 95vh;
+    /* the element will take 95% of device screen height */
+    background-image: linear-gradient(to right bottom, #7ed56fd2, #28b485bb),
+        url("../img/hero.jpg");
+    background-size: cover;
+    background-position: top;
+    /* whanever of the screen size is, the top part of the image will always stick to the top part of the container */
+    clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+    /* top-left, top-right, bottom-right, bottom-left */
+    position: relative;
 }
 
+.logo-box {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    /* top and left positions will be counted from the parent element with position relative, which is the header in this case  */
+}
 
+.logo {
+    height: 35px;
+    /* the width will be automatically configured by the browser */
+}
 
+.text-box {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* the element will be placed in the middle */
+    text-align: center;
+    margin-bottom: 60px;
+}
 
+.heading-primary {
+    color: #fff;
+    text-transform: uppercase;
+    backface-visibility: hidden;
+    /* fixes bugs with animation */
+}
 
+.heading-primary-main {
+    display: block;
+    /* block elements occupy all the width that are avalible */
+    font-size: 60px;
+    font-weight: 400;
+    letter-spacing: 35px;
 
+    animation-name: moveInLeft;
+    animation-duration: 1s;
+}
 
+.heading-primary-sub {
+    display: block;
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: 17.4px;
 
+    animation: moveInRight 1s ease-out;
 
+    /* animation-name: moveInRight;
+  animation-duration: 1s;
+  animation-timing-function: ease-out; */
 
+    /* animation-iteration-count: 3;
+  animation will happen 3 times */
 
+    /* animation-delay: 3s;
+  it will wait 3 seconds before animation begin */
+}
 
+@keyframes moveInLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-100px);
+    }
 
+    80% {
+        transform: translateX(3px);
+    }
 
+    100% {
+        opacity: 1;
+        transform: translate(0);
+    }
+}
 
+@keyframes moveInRight {
+    0% {
+        opacity: 0;
+        transform: translateX(100px);
+    }
 
+    80% {
+        transform: translateX(-3px);
+    }
 
+    100% {
+        opacity: 1;
+        transform: translate(0);
+    }
+}
 
+.btn:link,
+.btn:visited {
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 15px 40px;
+    display: inline-block;
+    border-radius: 100px;
+    transition: all 0.2s;
+    /* all the properties can be animated, the translate will be 2 seconds */
+    position: relative;
+    color: #333;
+}
+/* .btn:link is a state of anchor elements, .btn:visited is the change color state when someone clicks on the link  */
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
 
+.btn:active {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+/* active state means the element while you clicking on it */
+
+.btn-white {
+    background-color: #fff;
+    margin-top: 60px;
+}
+
+.btn::after {
+    content: "";
+    display: inline-block;
+    /* content and display property is necesary to our pseudo element to appear */
+    height: 100%;
+    width: 100%;
+    /* it will be the 100% of the parent element */
+    border-radius: 100px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    /* we put the pseudo element behind the parent */
+    transition: all .4s;
+}
+/* after pseudo element adds virtual like element after our current element */
+.btn-white::after {
+  background-color: #fff;
+}
+
+.btn:hover::after{
+  transform: scaleX(1.4) scaleY(1.6);
+  opacity: 0;
+}
+/* when the button is hovered we want a certain elements to be shown */
+
+.btn-animated{
+  animation: moveInButton 1s ease-out .75s;
+  animation-fill-mode: backwards;
+  /* the styles of animations will be applied before the animation starts */
+}
+
+@keyframes moveInButton {
+  0% {
+      opacity: 0;
+      transform: translateY(80px);
+  }
+
+  80% {
+      transform: translateY(-3px);
+  }
+
+  100% {
+      opacity: 1;
+      transform: translate(0);
+  }
+}
