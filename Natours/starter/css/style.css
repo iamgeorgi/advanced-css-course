@@ -6,3 +6,55 @@ Medium green: #55c57a
 Dark green: #28b485
 
 */
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; 
+  /* borders and paddings are no longer added to the total width or the total height */
+}
+
+body {
+  font-family: "Lato", sans-serif;
+  /* all the child elements of body inherits it's properties */
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.7;
+  color: #777;
+  padding: 30px;
+  /* gives a cool white border around the page */
+}
+
+.header {
+  height: 95vh;
+  /* the element will take 95% of device screen height */
+  background-image: linear-gradient(
+    to right bottom, 
+    #7ed56fd2, 
+    #28b485bb), 
+    url('../img/hero.jpg');
+  background-size: cover;
+  background-position: top;
+  /* whanever of the screen size is, the top part of the image will always stick to the top part of the container */
+  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+  /* top-left, top-right, bottom-right, bottom-left */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
