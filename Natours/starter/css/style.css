@@ -181,6 +181,7 @@ body {
 .btn:hover::after{
   transform: scaleX(1.4) scaleY(1.6);
   opacity: 0;
+  color: #777;
 }
 /* when the button is hovered we want a certain elements to be shown */
 
